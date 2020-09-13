@@ -23,17 +23,43 @@ sentence = "jesslookedjustliketimherbrother"
 
 
 
-"""   
+"""
 
 class Solution:
 
-    def respace(self, dictionary: List[str], sentence: str):
-        
-        sum = 0 
-        
-        return sum
+    def respace(self, dictionary, sentence):
 
-   
+        slen = len(sentence)
+        if slen == 0: return 0
+        if len(dictionary) == 0 : return slen
+
+        dp = [0] * (slen + 1)
+        for i in range(1, slen+1):
+            dp[i] = dp[i-1] + 1
+            for j in range(i) :
+                #print(j, i)
+                #print (sentence[j:i])
+                if sentence[j:i] in dictionary:
+                    dp[i] = min(dp[i], dp[j])
+        return dp[-1]
+
+
+    def respace2(self, dictionary, sentence):
+
+        slen = len(sentence)
+
+        if slen == 0: return 0
+        if len(dictionary) == 0 : return slen
+
+        dp = [0] * (slen + 1)
+        for i in range(1, slen+1):
+            dp[i] = dp[i-1] + 1
+            for dict in dictionary:
+                if len(dict) <= i and sentence[i-len(dict):i] == dict:
+                    dp[i] = min(dp[i], dp[i-len(dict)])
+        return dp[-1]
+
+
 
 if __name__ == '__main__':
 
@@ -44,7 +70,7 @@ if __name__ == '__main__':
     #print(s.ambiguousCoordinates("(123)"))
     #print(s.ambiguousCoordinates("(00011)"))
     #print(s.ambiguousCoordinates("(0123)"))
-    print(s.respace(dictionary, sentence))
-    
+    print(s.respace2(dictionary, sentence))
+
 
 

@@ -15,6 +15,14 @@
 
 思路小结：
 
+1. 用双指针， a为环前的节点个数 b为环节点个数。 
+2. fast指钟走两步， slow指针走一步， 所以fast=2*slow.有环就会相遇。 
+3. fast比slow多走了n环。 所 fast=s+bn。 所以 fast = 2nb slow = bn.
+4. 相遇说明有环， 第一步已经完成， 第二步是找出入口点。 
+5. 把fast恢复到head, fast走a步，show走 nb+a。因为 nb是环，所以，fast和slow又相遇了。 
+6. 这时的位置就是入口点
+
+
 
 """   
 """

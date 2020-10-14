@@ -16,7 +16,8 @@
 
 思路小结：
 
-1. 
+1. 两两交换
+2. 多多交换
 
 """
 
@@ -40,6 +41,21 @@ if __name__ == '__main__':
 
    pass
 
+"""
+// c++
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+         if (head == nullptr || head->next == nullptr) {
+            return head;
+        }
+        ListNode* newHead = head->next;
+        head->next = swapPairs(newHead->next);
+        newHead->next = head;
+        return newHead;
+    }
+};
+"""
 
 
 
